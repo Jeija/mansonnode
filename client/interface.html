@@ -1,0 +1,123 @@
+<!DOCTYPE html>
+
+<html>
+
+<head>
+<title>Manson HCS Controller</title>
+<script src="/jquery.min.js"></script>
+
+<script src="/jquery.gridster.min.js"></script>
+<script src="/socket.io/socket.io.js"></script>
+<script src="/jquery.flot.min.js"></script>
+<script src="/segment-display.js"></script>
+<script src="/commands.js"></script>
+<script src="/client.js"></script>
+
+<link rel="stylesheet" type="text/css" href="jquery.gridster.min.css">
+<link rel="stylesheet" type="text/css" href="styles.css">
+
+</head>
+<body>
+
+<div id="headline">Manson HCS Control Panel</div>
+
+<!-- Grid layout -->
+<div class="gridster"><ul id="maingrid">
+	<!-- Voltage / Current controls -->
+	<li data-row="1" data-col="1" data-sizex="4" data-sizey="5" class="gli">
+	<div id="controls">
+		<div class="control_container">
+			<div class="control_range_container">
+				<input id="voltage_control" class="controlslider" type="range" value="0"/>
+			</div><br />
+			Voltage
+			<div class="value">0.0V</div>
+		</div>
+
+		<div class="control_container">
+			<div class="control_range_container">
+				<input id="current_control" class="controlslider" type="range" value="0"/>
+			</div><br />
+			Current
+			<div class="value">0.0A</div>
+		</div>
+		<input type="button" id="controls_update" value="OK">
+
+		<!-- Output on / off toggle -->
+		<div id="toggle_output_container">
+			<input type="button" id="toggle_output" status="enable" value = "Output" />
+		</div>
+	</div>
+	</li>
+
+	<!-- Voltage / current setting display -->
+	<li data-row="4" data-col="5" data-sizex="4" data-sizey="3" class="gli">
+	<div id="display_container">
+		<div class="dispheading">Settings</div>
+		<canvas id="volt_disp" width="100" height="50"></canvas>V<br/>
+		<canvas id="curr_disp" width="100" height="50"></canvas>A
+	</div>
+	</li>
+
+	<!-- Actual voltage / current display -->
+	<li data-row="1" data-col="5" data-sizex="4" data-sizey="3" class="gli">
+	<div id="actual_container">
+		<div class="dispheading">Actual values</div>
+		<canvas id="volt_actual" width="100" height="50"></canvas>V<br/>
+		<canvas id="curr_actual" width="100" height="50"></canvas>A
+		<!-- CV / CC Display -->
+		<div id="cvcc_disp">
+			N/A
+		</div>
+	</div>
+	</li>
+
+	<!-- Current / power counter -->
+	<li data-row="7" data-col="5" data-sizex="4" data-sizey="3" class="gli">
+	<div id="counter_container">
+		<div class="dispheading">Counter</div>
+		<canvas id="charge_disp" width="130" height="50"></canvas>mAh<br/>
+		<canvas id="energy_disp" width="130" height="50"></canvas>Wh
+	</div>
+	</li>
+
+	<!-- Voltage / current / power graph -->
+	<li data-row="1" data-col="9" data-sizex="6" data-sizey="6" class="gli">
+		<div class="graphheadline">Voltage</div>
+		<div id="voltagegraph" class="graph"></div>
+		<span class="graphsettings">Show last <input type="text" class="graph_valnum"> values</input></span>
+	</li>
+	<li data-row="7" data-col="9" data-sizex="6" data-sizey="6" class="gli">
+		<div class="graphheadline">Current</div>
+		<div id="currentgraph" class="graph"></div>
+		<span class="graphsettings">Show last <input type="text" class="graph_valnum"> values</input></span>
+	</li>
+
+	<li data-row="1" data-col="15" data-sizex="8" data-sizey="5" class="gli">
+	<div id="timedlist_container">
+		<div class="dispheading">Timed list</div>
+		<div id="timedlist_scroll">
+			<table id="timedlist"></table>
+		</div>
+		<div id="tlist_controls">
+			Duration: <input type="text" id="tlist_dur" />s&nbsp;&nbsp;
+			Voltage: <input type="text" id="tlist_volt" />V&nbsp;&nbsp;
+			Current: <input type="text" id="tlist_curr" />A&nbsp;&nbsp;
+			<input type="button" id="tlist_add" value="Add" />
+			<input type="button" id="tlist_stop" value="Stop" />
+		</div>
+	</div>
+	</li>
+
+	<!-- Serial terminal -->
+	<li data-row="6" data-col="1" data-sizex="4" data-sizey="5" class="gli">
+	<div id="serlog_term">
+		<ul id="serial_log"></ul>
+		<input id="serial_msg" />
+		<button id="putserial">OK</button>
+	</div>
+	</li>
+</ul></div>
+
+</body>
+</html>

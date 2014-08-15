@@ -1,0 +1,16 @@
+{
+	"name": "mansonnode",
+	"version": "0.1.0",
+	"description": "A web frontend for controlling different Manson HCS power supplies",
+	"author": "Florian Euchner",
+	"repository": {
+		"type": "git",
+		"url": "git://github.com/Jeija/mansonnode.git"
+	},
+	"dependencies": {
+		"express": ">=4.8.2",
+		"serialport": ">=1.4.5",
+		"socket.io": ">=1.0.6"
+	},
+	"engine": "node >= 0.10.30"
+}

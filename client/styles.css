@@ -1,0 +1,426 @@
+body {
+	background-color:#000;
+	overflow-y:hidden;
+}
+
+#headline {
+	margin-left:10px;
+	color:#fff;
+	font-size:30px;
+}
+
+/*
+	General - scrollbars (WebKit only)
+*/
+::-webkit-scrollbar {
+	width: 10px;
+}
+
+::-webkit-scrollbar-track {
+	background-color:rgba(0, 0, 0, 0);
+}
+
+::-webkit-scrollbar-thumb {
+	background-color: #fff;
+	border-radius:10px;
+}
+
+::-webkit-scrollbar-thumb:hover {
+	background-color: #aaa;
+}
+
+
+/*
+	Toggle Output button
+*/
+#toggle_output {
+	-webkit-user-select: none;
+	-moz-user-select: none;
+	-ms-user-select: none;
+	user-select: none;
+	font-family:Monospace;
+	font-size:14px;
+	font-weight:bold;
+	cursor:pointer;
+	border:4px solid;
+	padding:5px;
+	color:#fff;
+	background:#000;
+	border-radius:4px;
+	outline:none;
+	width:80%;
+}
+
+#toggle_output[status="enable"] {
+	border-color:#2e0;
+}
+
+#toggle_output[status="disable"] {
+	border-color:#f00;
+}
+
+#toggle_output_container {
+	margin-top:5px;
+}
+
+/*
+	Voltage / Current control
+*/
+.control_container {
+	display:table-cell;
+	padding:5px;
+	color:#fff;
+	text-align:center;
+	position:relative;
+}
+
+.control_range_container {
+	border:2px solid white;
+	display:inline-block;
+}
+
+.controlslider {
+	-webkit-transform:rotate(-90deg);
+	-moz-transform:rotate(-90deg);
+	-ms-transform:rotate(-90deg);
+	-o-transform:rotate(-90deg);
+	border-radius:10px;
+	height:0px;
+	margin-top:99px;
+	margin-bottom:99px;
+	margin-left:-50px;
+	margin-right:-50px;
+	width:200px; 
+	box-shadow: inset 0 0 5px #333;
+	line-height:200px;
+}
+
+.controlslider::-moz-slider-thumb {
+	-moz-appearance: none !important;
+	background-color: #FFF;
+	height: 100px; /* slider width (rotation) */
+	width: 20px;
+}
+
+.controlslider::-webkit-slider-thumb {
+	-webkit-appearance: none !important;
+	background-color: #FFF;
+	height: 100px; /* slider width (rotation) */
+	width: 20px;
+}
+
+.control_container .value {
+	-webkit-user-select: none;
+	-moz-user-select: none;
+	-ms-user-select: none;
+	user-select: none;
+	z-index:0;
+	font-size:18px;
+	position:absolute;
+	top:calc(50% - 18px);
+	left:calc(50% - 18px);
+	color:red;
+}
+
+#controls {
+	display:inline-block;
+	text-align:center;
+	padding:5px;
+}
+
+#controls_update {
+	width:80%;
+	padding:5px;
+	background:#000;
+	color:#fff;
+	border:2px solid #fff;
+	border-radius:2px;
+	transition:background-color 0.1s;
+	font-size:14px;
+	font-weight:bold;
+	outline:none;
+}
+
+#controls_update:hover {
+	transition:background-color 0.1s;
+	background-color:#444;
+}
+
+#controls_update:active {
+	transition:background-color 0.1s;
+	background-color:#888;
+}
+
+/*
+	Serial Terminal
+*/
+#serial_log {
+	font-family:Monospace;
+	color:#0f0;
+	list-style-type:none;
+	padding: 0;
+	text-align:left;
+	position:absolute;
+	top:0;
+	height:calc(100% - 40px);
+	width:95% !important;
+	overflow-y:hidden;
+	overflow-x:visible;
+}
+
+#serial_log li {
+	padding: 5px 5px;
+}
+
+#serlog_term {
+	position:absolute;
+	top:0;
+	width:100%;
+	height:100%;
+	border:1px solid white;
+	background:#000;
+	z-index:-1;
+}
+
+#serial_msg {
+	position:absolute;
+	bottom:1px;
+	left:2px;
+	width:calc(100% - 45px);
+	padding:4px;
+	background:#000;
+	outline:0;
+	border:2px solid #fff;
+	color:#0f0;
+}
+
+#putserial {
+	position:absolute;
+	bottom:1px;
+	right:2px;
+	padding:4px;
+	width:30px;
+	background:#000;
+	color:#0f0;
+	border:2px solid #fff;
+}
+
+#putserial:active {
+	background:#676;
+}
+
+/* Voltage / Current display (setting values) */
+#display_container {
+	border:2px solid white;
+	padding:10px;
+	color:#fff;
+	width:120px;
+	height:120px;
+
+	margin: auto;
+	position: absolute;
+	top: 0; left: 0; bottom: 0; right: 0;
+}
+
+/* Voltage / Current display (actual values) */
+#actual_container {
+	border:2px solid white;
+	padding:10px;
+	color:#fff;
+	width:180px;
+	height:130px;
+
+	margin: auto;
+	position: absolute;
+	top: 0; left: 0; bottom: 0; right: 0;
+}
+
+/* Charge / energy counter */
+#counter_container {
+	border:2px solid white;
+	padding:10px;
+	color:#fff;
+	width:163px;
+	height:130px;
+
+	margin: auto;
+	position: absolute;
+	top: 0; left: 0; bottom: 0; right: 0;
+}
+
+/* Timed list */
+#timedlist_container {
+	border:2px solid white;
+	padding:10px;
+	color:#fff;
+	width:470px;
+	height:90%;
+	background:#333;
+
+	margin: auto;
+	position: absolute;
+	top: 0; left: 0; bottom: 0; right: 0;
+}
+
+#timedlist_scroll {
+	height:calc(100% - 60px);
+	overflow-y:scroll;
+}
+
+
+/* Time list - list items */
+
+#timedlist tr:nth-child(odd) {
+	background:#111;
+}
+
+#timedlist tr:first-child {
+	background:#080;
+}
+
+#timedlist th {
+	padding-right:10px;
+	padding-left:10px;
+}
+
+#timedlist th, td {
+	text-align:right;
+}
+
+#timedlist td {
+	padding:3px;
+	font-size:18px;
+	font-weight:bold;
+}
+
+.tlist_del, .tlist_up, .tlist_down, .tlist_run {
+	background:rgba(0, 0, 0, 0);
+	border:none;
+	color:#0f0;
+	font-weight:bold;
+	font-size:16px;
+	cursor:pointer;
+	margin-left:0;
+	margin-right:0;
+}
+
+.tlist_del:hover, .tlist_up:hover, .tlist_down:hover, .tlist_run:hover {
+	background:rgba(100, 255, 100, 0.4);
+}
+
+.tlist_del:disabled, .tlist_up:disabled, .tlist_down:disabled, .tlist_run:disabled {
+	color:#282;
+}
+
+/* Time list - controls */
+#tlist_controls {
+	position:absolute;
+	bottom:0;
+	height:30px;
+	overflow:hidden;
+	border-top:2px dashed #aaa;
+	width:470px;
+	left:0;
+	padding:7px;
+}
+
+#tlist_stop, #tlist_add {
+	border:2px solid #fff;
+	background:#000;
+	color:#0f0;
+	padding:3px;
+	cursor:pointer;
+}
+
+#tlist_curr, #tlist_volt, #tlist_dur {
+	background:#000;
+	color:#0f0;
+	border:2px solid #fff;
+	width:40px;
+	padding:3px;
+	margin-right:2px;
+}
+
+#tlist_delete:active, #tlist_add:active {
+	background:#676;
+}
+
+/* Heading of counter / actual / setting display */
+.dispheading {
+	font-size:16px;
+	font-weight:bold;
+	margin-top:-5px;
+	color:#fff;
+}
+
+/* CV / CC display */
+#cvcc_disp {
+	-webkit-user-select: none;
+	-moz-user-select: none;
+	-ms-user-select: none;
+	user-select: none;
+	cursor:default;
+	color:#fff;
+	padding:10px;
+	margin:8px;
+	font-size:12px;
+	border:2px solid white;
+	display:inline-block;
+	border-radius:3px;
+}
+
+#cvcc_disp[status="cv"] {
+	border-color:#0f0;
+}
+
+#cvcc_disp[status="cc"] {
+	border-color:#f00;
+}
+
+/* Voltage / current / power graph */
+.graph {
+	width:100%;
+	height:calc(100% - 60px);
+}
+
+.graphheadline {
+	color:#fff;
+	font-size:18px;
+}
+
+.graphsettings {
+	color:#0f0;
+	width:100%;
+	display:inline-block;
+	text-align:center;
+}
+
+.graphsettings input[type="text"] {
+	background:#000;
+	border:2px solid #fff;
+	width:50px;
+	color:#0f0;
+	padding:2px;
+}
+
+/* Grid layout */
+.gridster {
+	overflow:visible;
+	height:100%;
+	width:100%;
+}
+
+.gridster ul {
+	float:left;
+	width:100%;
+	overflow:auto;
+}
+
+.gli {
+	border:1px solid #000;
+} 
+
+.gli:hover {
+	border:1px solid #048;
+	cursor:pointer;
+}
