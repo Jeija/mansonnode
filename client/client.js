@@ -17,6 +17,22 @@ function server_prop(type, callback) {
 
 var HCS_decplaces = 1;
 
+// ###########
+// ## Utils ##
+// ###########
+function gridster_init() {
+	$("#maingrid").gridster({
+		widget_margins: [10, 10],
+		widget_base_dimensions: [50, 50],
+		autogrow_cols: true,
+		resize: {
+			enabled: true
+		},
+		min_cols: 1,
+		min_rows: 1
+	});
+}
+
 // Generates a 7-segment display with default settings
 function SegmentDisplayFactory(canvas_id, type) {
 	var disp = new SegmentDisplay(canvas_id);
@@ -52,6 +68,12 @@ function SegmentDisplayFactory(canvas_id, type) {
 	}
 
 	return disp;
+}
+
+function downloadData(filename, data) {
+    var dl = $("<a>").attr("href", "data:text/plain;charset=utf-8," + encodeURIComponent(data));
+    dl.attr("download", filename);
+    dl[0].click();
 }
 
 // ################
@@ -198,6 +220,55 @@ function timedlist_stop() {
 	tlist_update();
 }
 
+// ####################
+// ## Export / Import #
+// ####################
+function exim_exptlist () {
+	downloadData("manson_timedlist.json", JSON.stringify(timed_list));
+}
+
+function exim_expui () {
+	downloadData("manson_ui.json", JSON.stringify($("#maingrid").gridster().data('gridster').serialize()));
+}
+
+function exim_imptlist () {
+	$("<input type=\"file\" />")
+		.click()
+		.change(function(e) {
+			var reader = new FileReader();
+
+			reader.onload = function(event) {
+				timed_list = $.parseJSON(event.target.result);
+				tlist_update();
+			};
+
+			reader.readAsText(e.target.files[0]);
+		});
+}
+
+function exim_impui () {
+	$("<input type=\"file\" />")
+		.click()
+		.change(function(e) {
+			var reader = new FileReader();
+
+			reader.onload = function(event) {
+				var griddat = $.parseJSON(event.target.result);
+				console.log(griddat);
+				$($.find("#maingrid li")).each(function (idx, li) {
+					console.log(idx);
+					$(li).attr("data-sizex", griddat[idx].size_x);
+					$(li).attr("data-sizey", griddat[idx].size_y);
+					$(li).attr("data-col", griddat[idx].col);
+					$(li).attr("data-row", griddat[idx].row);
+				});
+			};
+
+			gridster_init();
+			reader.readAsText(e.target.files[0]);
+		});
+}
+
 // ##############
 // ## Setup UI ##
 // ##############
@@ -314,7 +385,7 @@ function setup_ui() {
 			var valnum = $("#currentgraph").data("valnum")
 			var data = (valnum > 0) ? [current_data.slice(current_data.length - valnum)] : [current_data];
 
-			var currentgraph = $.plot($("#currentgraph"), data);
+			var currentgraph = $.plot($("#currentgraph"), data, { colors: ['#07f'] });
 
 			currentgraph.draw();
 			currentgraph.setupGrid();
@@ -383,16 +454,7 @@ function putserial() {
 
 $(function() {
 	// Initialize gridster for the grid layout
-	$("#maingrid").gridster({
-		widget_margins: [10, 10],
-		widget_base_dimensions: [50, 50],
-		autogrow_cols: true,
-		resize: {
-			enabled: true
-		},
-		min_cols: 1,
-		min_rows: 1
-	});
+	gridster_init();
 
 	// Send manual command
 	$("#putserial").click(putserial);
@@ -411,6 +473,12 @@ $(function() {
 	tlist_update();
 	$("#tlist_add").click(timedlist_add);
 	$("#tlist_stop").click(timedlist_stop);
+
+	/* --- Export / Import module --- */
+	$("#exptlist").click(exim_exptlist);
+	$("#imptlist").click(exim_imptlist);
+	$("#expui").click(exim_expui);
+	$("#impui").click(exim_impui);
 
 	// Set output state
 	$("#toggle_output").click(function() {

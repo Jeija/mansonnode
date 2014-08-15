@@ -312,7 +312,7 @@ body {
 	color:#282;
 }
 
-/* Time list - controls */
+/* Timed list - controls */
 #tlist_controls {
 	position:absolute;
 	bottom:0;
@@ -343,6 +343,53 @@ body {
 
 #tlist_delete:active, #tlist_add:active {
 	background:#676;
+}
+
+/* Export / import module */
+#eximport_container {
+	border:2px solid white;
+	color:#fff;
+	width:400px;
+	height:85px;
+
+	margin: auto;
+	position: absolute;
+	top: 0; left: 0; bottom: 0; right: 0;
+}
+
+.eximcategory {
+	margin-left:4px;
+	float:left;
+	width:49%;
+	height:100%;
+}
+
+.eximcategory h1 {
+	text-align:center;
+	font-size:18px;
+	color:#0f0;
+	height:10px;
+	margin-top:2px;
+}
+
+.eximbutton {
+	text-align:center;
+	width:44%;
+	margin:2px;
+	float:left;
+	font-size:14px;
+	padding:2px;
+	border:1px solid rgba(100, 255, 100, 0.4);
+}
+
+.eximbutton:hover {
+	background:#660;
+}
+
+.eximicon {
+	font-weight:bold;
+	font-size:24px;
+	color:#0f0;
 }
 
 /* Heading of counter / actual / setting display */
@@ -410,7 +457,7 @@ body {
 	width:100%;
 }
 
-.gridster ul {
+#maingrid {
 	float:left;
 	width:100%;
 	overflow:auto;
