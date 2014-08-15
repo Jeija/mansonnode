@@ -1,6 +1,6 @@
 <img src="http://mesecons.net/random/mnscreens/hcs3202.jpg" align="right" />
 # MansonNode
-A web frontend for Manson HCS power supplies writting in node.js. It even runs on a Raspberry Pi and can be accessed from multiple devices at the same time.
+A web frontend for Manson HCS power supplies written in node.js. It even runs on a Raspberry Pi and can be accessed from multiple devices at the same time.
 
 ## Screenshots
 <img src="http://mesecons.net/random/mnscreens/mansonnode.png" width=500px />
@@ -71,7 +71,7 @@ A web frontend for Manson HCS power supplies writting in node.js. It even runs o
         PYTHON=python2 npm install
 
 ### Windows
-There is no reason why it shouldn't work on Windows (all modules are cross-platform), but you will have to figure out how to install it on Windows yourself. It would be great if you could submit an installation guide for this website if you tested it.
+Mansonnode should work on Windows (all modules are cross-platform), but I haven't tested it. It would be great if you could submit an installation guide for this website if you install it.
 
 ### Configuration
 In some cases you **must** edit configuration options in the source code to make it work. You can find the config at the top of the **server.js** file.
@@ -87,21 +87,22 @@ Different Manson HCS versions use different numbers of decimal digits for curren
 
 * Baudrate: Should be the same for all HCS PSUs, 9600 baud
 * TCP Port: Port to access the fronted from a webbrowser
-* UPDATE_TIME: Interval in which the software will update its information about the PSU
+* UPDATE_TIME: Interval in which the software will update PSU information
 
 ## Run
+Execute
 
         node server.js /dev/ttyUSBx
 
-Where you have to replace /dev/ttyUSBx with the serial port the Manson HCS is connected to, so for instance
+You have to replace /dev/ttyUSBx with the serial port the Manson HCS is connected to, so for instance
 
         node server.js /dev/ttyUSB0
 
 ## Open in Chrome / Chromium
-I do not recommend to use any other browser than recent webkit-based ones!
-Simply visit `localhost:4444`. If you have mansonnode on a Raspberry Pi, just replace localhost with the Pi's IP. You propably won't even realize a performance difference between your PC and the Pi!
+I do not recommend to use any browser other than recent webkit-based ones!
+Simply visit [`localhost:4444`](http://localhost:4444). If you have mansonnode on a Raspberry Pi, just replace localhost with the Pi's IP. You propably won't even realize a performance difference between your PC and the Pi!
 
-### Play around with the UI! You can drag around widgets to create the UI you need for your project.
+### Play with the UI! You can drag and resize widgets to create the UI you need for your project.
 
 ## Contribute
 If you want to help others by contributing to this project, simply send a pull request to this GitHub repo.
