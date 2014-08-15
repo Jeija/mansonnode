@@ -254,9 +254,7 @@ function exim_impui () {
 
 			reader.onload = function(event) {
 				var griddat = $.parseJSON(event.target.result);
-				console.log(griddat);
 				$($.find("#maingrid li")).each(function (idx, li) {
-					console.log(idx);
 					$(li).attr("data-sizex", griddat[idx].size_x);
 					$(li).attr("data-sizey", griddat[idx].size_y);
 					$(li).attr("data-col", griddat[idx].col);
