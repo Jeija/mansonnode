@@ -1,52 +1,72 @@
-<img src="http://mesecons.net/random/mnscreens/hcs3202.jpg" style="float:right;" />
+<img src="http://mesecons.net/random/mnscreens/hcs3202.jpg" align="right" />
 # MansonNode
 A web frontend for Manson HCS power supplies writting in node.js. It even runs on a Raspberry Pi and can be accessed from multiple devices at the same time.
 
 ## Screenshots
-<img src="http://mesecons.net/random/mnscreens/mansonnode.png" style="width:500px;" />
-<img src="http://mesecons.net/random/mnscreens/mansonnode2.png" style="width:500px;" />
+<img src="http://mesecons.net/random/mnscreens/mansonnode.png" width=500px />
+<img src="http://mesecons.net/random/mnscreens/mansonnode2.png" width=500px />
 
 ### Warning: See disclaimer in the LICENSE file!
 
 ## Installation
 ### Archlinux
 * Install git, nodejs and npm
+
         sudo pacman -Sy git nodejs
+
 * Download MansonNode:
+
         git clone https://github.com/Jeija/mansonnode.git
+
 * Install dependencies
+
         cd mansonnode
         npm install
 
 ### Ubuntu
 * Install git, nodejs and npm
+
         sudo apt install git nodejs nodejs-legacy npm
+
 * Download MansonNode:
+
         git clone https://github.com/Jeija/mansonnode.git
+
 * Install dependencies
+
         cd mansonnode
         npm install
 
 ### Debian
 * Install git, nodejs and npm
+
         apt-get install curl lsb-release
         curl -sL https://deb.nodesource.com/setup | bash -
         sudo apt install git nodejs nodejs-legacy npm
+
 * Download MansonNode:
+
         git clone https://github.com/Jeija/mansonnode.git
+
 * Install dependencies
+
         cd mansonnode
         npm install
 
 ### Raspberry Pi (Archlinux ARM)
-<img src="http://mesecons.net/random/mnscreens/rpi.png" style="float:right;" />
+<img src="http://mesecons.net/random/mnscreens/rpi.png" align="right" />
 * Put ArchlinuxARM on your SD card, following the instructions [here](http://archlinuxarm.org/platforms/armv6/raspberry-pi)
 * SSH into the Raspberry Pi
 * Install git, serialport dependencies, nodejs and npm
+
         pacman -Sy git base-devel python2 nodejs
+
 * Download MansonNode:
+
         git clone https://github.com/Jeija/mansonnode.git
+
 * Install dependencies
+
         cd mansonnode
         PYTHON=python2 npm install
 
@@ -63,14 +83,16 @@ Different Manson HCS versions use different numbers of decimal digits for curren
 * 2 decimal places for current value: HCS-3102, 3014, 3204
 * If your PSU is not in this list, you will very likely find the information in your user's manual.
 
-1 decimal place is the default setting. In order to use 2 decimal places, change `var DECIMAL_PLACES = 1;` to `var DECIMAL_PLACES = 2;`.
+1 place is the default setting. Change `var DECIMAL_PLACES = 1;` to `var DECIMAL_PLACES = 2;` in order to use a power supply with two decimal places.
 
 * Baudrate: Should be the same for all HCS PSUs, 9600 baud
 * TCP Port: Port to access the fronted from a webbrowser
 * UPDATE_TIME: Interval in which the software will update its information about the PSU
 
 ## Run
+
         node server.js /dev/ttyUSBx
+
 Where you have to replace /dev/ttyUSBx with the serial port the Manson HCS is connected to, so for instance
 
         node server.js /dev/ttyUSB0
