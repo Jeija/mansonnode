@@ -10,6 +10,7 @@ A web frontend for Manson HCS power supplies written in node.js. It even runs on
 
 ## Installation
 ### Archlinux
+<img src="http://mesecons.net/random/mnscreens/arch.png" align="right" />
 * Install git, nodejs and npm
 
         sudo pacman -Sy git nodejs
@@ -24,6 +25,7 @@ A web frontend for Manson HCS power supplies written in node.js. It even runs on
         npm install
 
 ### Ubuntu
+<img src="http://mesecons.net/random/mnscreens/ubuntu.png" align="right" />
 * Install git, nodejs and npm
 
         sudo apt install git nodejs nodejs-legacy npm
@@ -38,6 +40,7 @@ A web frontend for Manson HCS power supplies written in node.js. It even runs on
         npm install
 
 ### Debian
+<img src="http://mesecons.net/random/mnscreens/debian.png" align="right" />
 * Install git, nodejs and npm
 
         apt-get install curl lsb-release
